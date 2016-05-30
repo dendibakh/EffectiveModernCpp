@@ -82,5 +82,5 @@ TEST(ForwardUnitTest, check_my_forward_version)
 
 	testMoves obj;
 	callWithLvalueWithMyforward(obj);
-	callWithLvalueWithMyforward(std::move(obj));
+	callWithRvalueWithMyforward(std::move(obj));
 }
