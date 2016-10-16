@@ -271,7 +271,7 @@ TEST(UniversalReferencesUnitTest, sfinae_technique_helps_to_avoid_overloading_on
 	using namespace sfinae_technique;
 	Person p("a");
 	Person copy1 = p; // this compiles because there is no way to call perfect forwarding ctor
-	Person copy2(p); //not compiles because perfect forwarding ctor is a better match
+	Person copy2(p);
 
 	const Person b("b");
 	// this compiles because now better match is compiler-generated copy ctor

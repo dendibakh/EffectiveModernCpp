@@ -76,7 +76,7 @@ TEST(ForwardUnitTest, check_my_forward_version)
 {
 	int x = 1;
 
-	// not compiles: can't convert in to int&
+	// not compiles: can't convert int to int&
 	//static_assert( std::is_same< decltype(Myforward<int>(7)), int&&>::value, "types are not the same" );
 	static_assert( std::is_same< decltype(Myforward<int>(x)), int&&>::value, "types are not the same" );
 
