@@ -320,3 +320,55 @@ TEST(MoveBindingsTest, rvo_taking_moved_local_object_by_value)
 	ASSERT_EQ(3, obj.x);
 	static_assert( std::is_same< decltype(obj), testMoves>::value, "types are not the same" );
 }
+
+// Testing binding T&& to const T&
+
+void bindRvalueRefToConstLValueRef (const testMoves& obj)
+{
+	(void) obj;
+}
+
+TEST(MoveBindingsTest, RValue_Ref_BINDS_to_const_LValue_Ref)
+{
+	testMoves obj;
+	bindRvalueRefToConstLValueRef(std::move(obj));
+}
+
+// Testing binding T&& to T&
+
+void bindRvalueRefToLValueRef (testMoves& obj)
+{
+	(void) obj;
+}
+
+TEST(MoveBindingsTest, RValue_Ref_does_NOT_bind_to_LValue_Ref)
+{
+	testMoves obj;
+	//bindRvalueRefToLValueRef(std::move(obj)); not compiles
+}
+
+// Testing binding const T&& to T&
+
+void bindConstRvalueRefToLValueRef (testMoves& obj)
+{
+	(void) obj;
+}
+
+TEST(MoveBindingsTest, Const_RValue_Ref_does_NOT_bind_to_LValue_Ref)
+{
+	const testMoves obj;
+	//bindConstRvalueRefToLValueRef(std::move(obj)); not compiles
+}
+
+// Testing binding const T&& to const T&
+
+void bindConstRvalueRefToConstLValueRef (const testMoves& obj)
+{
+	(void) obj;
+}
+
+TEST(MoveBindingsTest, Const_RValue_Ref_BINDS_to_Const_LValue_Ref)
+{
+	const testMoves obj;
+	bindConstRvalueRefToConstLValueRef(std::move(obj));
+}
