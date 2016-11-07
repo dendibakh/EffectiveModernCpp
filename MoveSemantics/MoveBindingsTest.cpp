@@ -296,7 +296,7 @@ testMoves barMoveLocalCond1 (bool cond)
 TEST(MoveBindingsTest, no_rvo_taking_moved_local_object_by_value)
 {
 	testMoves obj = barMoveLocalCond1(false);
-	ASSERT_EQ(1, obj.x); // here it is 0, because RVO took place.
+	ASSERT_EQ(1, obj.x);
 	static_assert( std::is_same< decltype(obj), testMoves>::value, "types are not the same" );
 }
 
@@ -317,6 +317,6 @@ testMoves barMoveLocalCond2 (bool cond)
 TEST(MoveBindingsTest, rvo_taking_moved_local_object_by_value)
 {
 	testMoves obj = barMoveLocalCond2(false);
-	ASSERT_EQ(3, obj.x); // here it is 0, because RVO took place.
+	ASSERT_EQ(3, obj.x);
 	static_assert( std::is_same< decltype(obj), testMoves>::value, "types are not the same" );
 }
